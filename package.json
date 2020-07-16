@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "node index.js",
     "server": "nodemon index",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "author": "Abhisek Hazra",
   "license": "ISC",
@@ -23,5 +24,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "engines": {
+    "node": "12.16.1"
+}
 }

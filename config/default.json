@@ -1,0 +1,4 @@
+{
+    "mongoDBUri": "mongodb+srv://Hazu123:Hazu123@cluster0.clepj.mongodb.net/MyProject?retryWrites=true&w=majority",
+    "myToken": "secrettoken"
+}

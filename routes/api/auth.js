@@ -3,7 +3,19 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const auth = require('../../middleware/auth');
 const router = express.Router();
+
+
+router.get('/me', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select('-password');
+        return res.json({ user, statusCode : 200 });
+    }
+    catch (err) {
+        return res.status(500).json({ msg: 'Server Error' });
+    }
+});
 
 router.post('/',
     [
@@ -34,7 +46,7 @@ router.post('/',
                 { expiresIn: 3600 },
                 (err, token) => {
                     if (err) throw err;
-                    return res.json({ token, message: 'You have successfully logged in' });
+                    return res.json({ token, message: 'You have successfully logged in' , statusCode : 200});
                 }
             );
         }

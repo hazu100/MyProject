@@ -1,0 +1,29 @@
+.logInWrapper{
+    align-self: center;
+    background-color: ghostwhite;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+    @media only screen and (max-width: 600px) {
+        height: 100%;
+        position: absolute;
+    }
+    }
+
+    .form-control{
+        background-color: lightgrey;
+    }
+
+    .avatarImage {
+        height: 4.25rem;
+        width: 4.25rem;
+        background-color: seagreen;
+        border-radius: 50%;
+        border: 5px solid seagreen;
+    }
+
+    .logInButton{
+        background-color: seagreen;
+        color: seashell;
+        font-weight: bold;
+    }

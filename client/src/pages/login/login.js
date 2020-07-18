@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import fetch from 'isomorphic-fetch';
+import './login.scss';
+import { Link } from "react-router-dom";
+import avatar from '../../media/avatar.png'
 
 class LogIn extends Component {
 
@@ -62,11 +65,18 @@ class LogIn extends Component {
 
     render() {
         return (
-            <div>
-                <input type="text" name="email" ref={this.emailInput} placeholder="Enter your email" />
-                <input type="password" name="password" ref={this.passwordInput} placeholder="Enter your password" />
-                <button onClick={this.generateToken}>Log In</button>
-                <button onClick={() => this.props.history.push('/')}>Back</button>
+            <div className='logInWrapper px-sm-4 px-2 py-5 col-sm-6 col-12'>
+                <div className="text-center mb-4 mt-md-0 mt-5">
+                    <img className="avatarImage" src = {avatar} alt="avatar" />
+                </div>
+                <div className="form-group">
+                    <input type="text" className="form-control" name="username" ref={this.emailInput} placeholder="Username" required="required" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" ref={this.passwordInput} placeholder="Password" required="required" />
+                </div>
+                <button className="text-center form-control mb-2 logInButton" onClick={this.generateToken}>Log In</button>
+                <span className="mr-2">Don't have an account?</span><Link to='/register'>Sign up here</Link>
             </div>
         );
     }

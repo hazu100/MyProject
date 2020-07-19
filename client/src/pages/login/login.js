@@ -12,9 +12,16 @@ class LogIn extends Component {
         this.passwordInput = React.createRef();
         this.state = {
             isLoggedIn: false,
-            authToken: null
+            authToken: null,
+            showPassword: false,
         };
     }
+
+    toggleShowPassword = () => {
+        this.setState({
+            showPassword: !this.state.showPassword,
+        });
+    };
 
     generateToken = () => {
         const data = {
@@ -67,13 +74,14 @@ class LogIn extends Component {
         return (
             <div className='logInWrapper px-sm-4 px-2 py-5 col-sm-6 col-12'>
                 <div className="text-center mb-4 mt-md-0 mt-5">
-                    <img className="avatarImage" src = {avatar} alt="avatar" />
+                    <img className="avatarImage" src={avatar} alt="avatar" />
                 </div>
                 <div className="form-group">
                     <input type="text" className="form-control" name="username" ref={this.emailInput} placeholder="Username" required="required" />
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" name="password" ref={this.passwordInput} placeholder="Password" required="required" />
+                <div className="form-group d-flex passwordWrapper">
+                    <input type={this.state.showPassword ? "text" : "password"} className="form-control" name="password" ref={this.passwordInput} placeholder="Password" required="required" />
+                    <span className={`passwordToggleField ${this.state.showPassword ? "fa fa-eye-slash" : "fa fa-eye"}`} onClick={this.toggleShowPassword} />
                 </div>
                 <button className="text-center form-control mb-2 logInButton" onClick={this.generateToken}>Log In</button>
                 <span className="mr-2">Don't have an account?</span><Link to='/register'>Sign up here</Link>

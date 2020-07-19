@@ -27,6 +27,7 @@ class ForgotPassword extends Component {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': 'true',
                 'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Access-Control-Allow-Methods' : 'GET, POST, OPTIONS, PUT, PATCH, DELETE'
             }
         }).then(res => res.json()).then(data => {
             if(data.statusCode === 200)

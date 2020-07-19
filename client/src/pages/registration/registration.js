@@ -51,8 +51,7 @@ class Registration extends Component {
                 <input type="password" name="password" ref={this.passwordInput} placeholder="Enter your password" />
                 <button onClick={this.register}>Register</button>
                 <span className={this.state.isRegistered ? "d-block" : "d-none"} style={{}}>You have successfully registered</span>
-                <button onClick={() => this.props.history.push('/')}>Back</button>
-                <button onClick={() => this.props.history.push('/login')}>Log In</button>
+                <button onClick={() => this.props.history.push('/')}>Log In</button>
             </div>
         );
     }

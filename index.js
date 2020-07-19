@@ -14,6 +14,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use('/api/registration', require('./routes/api/user'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/send_email', require('./routes/api/sendemail'));
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'client/build', 'index.html'));

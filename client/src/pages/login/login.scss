@@ -31,8 +31,12 @@
     right: 0.5rem;
 }
 
-    .logInButton{
+    .logInButton, .sendEmailButton{
         background-color: seagreen;
         color: seashell;
         font-weight: bold;
+    }
+
+    button {
+        cursor: pointer;
     }

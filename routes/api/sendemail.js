@@ -1,8 +1,6 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const jwt = require('jwt-simple');
-const dotenv = require('dotenv');
-dotenv.config();
 const { check, validationResult } = require('express-validator');
 
 const router = express.Router();

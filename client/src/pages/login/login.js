@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import './login.scss';
 import { Link } from "react-router-dom";
 import avatar from '../../media/avatar.png'
+import ForgotPassword from "./forgotpassword";
 
 class LogIn extends Component {
 
@@ -14,7 +15,6 @@ class LogIn extends Component {
             isLoggedIn: false,
             authToken: null,
             showPassword: false,
-            showForgetPasswordSection : false,
         };
     }
 
@@ -24,11 +24,7 @@ class LogIn extends Component {
         });
     };
 
-    showForgotPasswordSection = () => {
-        this.setState({
-            showForgetPasswordSection: true,
-        });
-    }
+
 
     generateToken = () => {
         const data = {
@@ -92,13 +88,7 @@ class LogIn extends Component {
                 </div>
                 <button className="text-center form-control mb-2 logInButton" onClick={this.generateToken}>Log In</button>
                 <span className="mr-2">Don't have an account?</span><Link to='/register'>Sign up here</Link>
-                <Link  className="d-block" onClick={this.showForgotPasswordSection}>Forgot password?</Link>
-                <div className={this.state.showForgetPasswordSection? "mt-3" : "d-none"}>
-                <div className="form-group">
-                    <input type="text" className="form-control" name="email" placeholder="Enter email" required="required" />
-                </div>
-                <button className="text-center form-control sendEmailButton">Send Email</button>
-                </div>
+                <ForgotPassword />
             </div>
         );
     }

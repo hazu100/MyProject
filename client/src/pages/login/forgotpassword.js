@@ -36,7 +36,7 @@ class ForgotPassword extends Component {
                     recoveryEmailSent: true,
                 });
             }
-        }
+        }   
 
         ).catch(err => console.log(err));
     }
@@ -45,7 +45,7 @@ class ForgotPassword extends Component {
         return (
             <>
                 <Link className="d-block" onClick={this.showForgotPasswordSection}>Forgot password?</Link>
-                <div className={this.state.showForgetPasswordSection ? "mt-3" : "d-none"}>
+                <div className={this.state.showForgetPasswordSection ? "forgotPasswordWrapper mt-3" : "d-none"}>
                     <div className="form-group">
                         <input type="text" className="form-control" name="email" ref={this.sendEmailInput} placeholder="Enter email" required="required" />
                     </div>

@@ -5,12 +5,11 @@ const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
 
-router.post('/',
-    [
+router.post('/', [
         check('recoveryMailId', 'Please provide a valid email ID')
-            .isEmail(),
+        .isEmail(),
     ],
-    async (req, res) => {
+    async(req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -33,26 +32,24 @@ router.post('/',
                 }
             });
 
-            const token = jwt.encode(
-                { resetPassUserId: user.id },
+            const token = jwt.encode({ resetPassUserId: user.id },
                 user.password
             );
 
             const mailOptions = {
                 to: recoveryMailId,
-                from: 'abhisekbubuhazra@gmail.com',
+                from: process.env.FROM_MAIL_USERNAME,
                 subject: 'MyProject Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                    'https://' + req.headers.host + '/reset/' + token + '\n\n' +
+                    'https://' + req.headers.host + '/reset?token=' + token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
 
             transporter.sendMail(mailOptions, (err, response) => {
-                if (err) { console.log(err.message) }
-                else {
+                if (err) { console.log(err.message) } else {
                     transporter.close(); // shut down the connection pool, no more messages
-                    return res.json({ message: 'Email Sent' , statusCode : 200} );
+                    return res.json({ message: 'Email Sent', statusCode: 200 });
                 }
             });
 

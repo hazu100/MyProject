@@ -75,7 +75,7 @@ class LogIn extends Component {
 
     render() {
         return (
-            <div className='logInWrapper px-sm-4 px-2 py-5 col-sm-6 col-12'>
+            <div className='logInWrapper px-sm-4 px-2 py-md-3 col-md-6 col-lg-4 col-12'>
                 <div className="text-center mb-4 mt-md-0 mt-5">
                     <img className="avatarImage" src={avatar} alt="avatar" />
                 </div>

@@ -2,6 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const jwt = require('jwt-simple');
 const { check, validationResult } = require('express-validator');
+const User = require('../../model/user'); 
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ router.post('/', [
                 service: 'gmail',
                 auth: {
                     user: process.env.FROM_MAIL_USERNAME,
-                    pass: process.env.FROM_MAIL_PASSWORD,
+                    pass: process.env.FROM_MAIL_PASSWORD
                 },
                 tls: {
                     rejectUnauthorized: false
@@ -35,15 +36,16 @@ router.post('/', [
             const token = jwt.encode({ resetPassUserId: user.id },
                 user.password
             );
-
+            
             const mailOptions = {
                 to: recoveryMailId,
                 from: process.env.FROM_MAIL_USERNAME,
                 subject: 'MyProject Password Reset',
-                text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-                    'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                    'https://' + req.headers.host + '/reset?token=' + token + '\n\n' +
-                    'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                text: `Hi ${user.name},\n\n
+                    You are receiving this because you (or someone else) have requested the reset of the password for your account.\n
+                    Please click on the following link, or paste this into your browser to complete the process:\n
+                    https://${req.headers.host}/reset?user=${user.id}&token=${token} \n'
+                    If you did not request this, please ignore this email and your password will remain unchanged.\n`
             };
 
             transporter.sendMail(mailOptions, (err, response) => {

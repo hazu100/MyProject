@@ -27,7 +27,8 @@ class LogIn extends Component {
 
 
 
-    generateToken = () => {
+    generateToken = (e) => {
+        e.preventDefault();
         const data = {
             email: this.emailInput.current.value,
             password: this.passwordInput.current.value,

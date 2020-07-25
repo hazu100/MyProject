@@ -18,14 +18,14 @@ router.post('/',
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ errors: errors.array(), errorType: "validation" });
         }
         const { name, email, password } = req.body;
 
         try {
             let user = await User.findOne({ email });
             if (user) {
-                return res.status(400).json({ message: 'You have already registered' });
+                return res.status(400).json({ message: 'You have already registered', errorType: "duplicate" });
             }
 
             user = new User({
@@ -38,7 +38,7 @@ router.post('/',
             user.password = await bcrypt.hash(password, salt);
 
             await user.save();
-            return res.json({ message: 'You have successfully registered' });
+            return res.json({ message: 'You have successfully registered' , statusCode : 200});
         }
         catch (err) {
             return res.status(500).json({ message: 'Server error' });

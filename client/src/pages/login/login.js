@@ -92,7 +92,7 @@ class LogIn extends Component {
                     <input type={this.state.showPassword ? "text" : "password"} className="form-control" name="password" ref={this.passwordInput} placeholder="Password" required="required" />
                     <span className={`passwordToggleField ${this.state.showPassword ? "fa fa-eye-slash" : "fa fa-eye"}`} onClick={this.toggleShowPassword} />
                 </div>
-                <p className={!this.state.correctCredentails? "mb-2 invalidCredential" : "d-none"}>Invalid Credentials</p>
+                <p className={!this.state.correctCredentails? "mb-3 invalidCredential" : "d-none"}>Invalid Credentials</p>
                 <button className="text-center form-control mb-2 logInButton" onClick={this.generateToken}>Log In</button>
                 <span className="mr-2">Don't have an account?</span><Link to='/register'>Sign up here</Link>
                 <ForgotPassword />

@@ -50,7 +50,9 @@ class Registration extends Component {
             .then(data => {
                 if (data.statusCode === 200) {
                     this.setState({
+                        ...this.state,
                         isRegistered: true,
+                        isError : false,
                     });
                     this.resetForm.reset();
                     return data;

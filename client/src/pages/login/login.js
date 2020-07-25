@@ -46,7 +46,8 @@ class LogIn extends Component {
                 this.setState({
                     ...this.state,
                     isLoggedIn: true,
-                    authToken: data.token
+                    authToken: data.token,
+                    correctCredentails : true,
                 });
                 this.goToWelcomePage();
             }

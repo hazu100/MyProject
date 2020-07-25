@@ -58,7 +58,7 @@ class ResetPassword extends Component {
     render() {
         return (
             <div className="resetPasswordWrapper px-sm-4 px-2 py-md-3 col-md-6 col-lg-4 col-12">
-                <h3 className="mb-4 text-center">Reset your password</h3>
+                <h3 className="mb-4 text-center resetPasswordHeader">Reset your password</h3>
                 <div className="form-group d-flex newPassWrapper">
                     <input type={this.state.showNewPass ? "text":"password"} className="form-control" name="newPassword" ref={this.newPasswordInput} placeholder="New Password" required="required" />
                     <span className={`newPasswordToggleField ${this.state.showNewPass ? "fa fa-eye-slash" : "fa fa-eye"}`} onClick={this.toggleShowNewPassword} />
@@ -68,7 +68,7 @@ class ResetPassword extends Component {
                     <span className={`confirmNewPasswordToggleField ${this.state.showConfirmNewPass ? "fa fa-eye-slash" : "fa fa-eye"}`} onClick={this.toggleShowConfirmNewPassword} />
                 </div>
                 <button className="text-center form-control mb-2 resetPasswordButton" onClick={this.resetPassword}>Reset Password</button>
-                <span className={this.state.isPasswordChanged ? "mb-2 changePassword" : "d-none"}>You have successfully changed your password</span>
+                <p className={this.state.isPasswordChanged ? "mb-3 changePassword" : "d-none"}>You have successfully changed your password</p>
                 <button className={this.state.isPasswordChanged ?"text-center form-control mb-2 gotoLoginPage":"d-none"} onClick={()=>this.props.history.push('/')}>Log In</button>
             </div>
         );
